@@ -1,5 +1,6 @@
 using System.Collections.Specialized;
 using System.Linq;
+using System.Reflection;
 using Avalonia;
 using Avalonia.Controls;
 
@@ -41,6 +42,8 @@ namespace GridDemo
             }
         }
 
+        private static readonly FieldInfo? s_cellsStructureDirty = typeof(Grid).GetField("CellsStructureDirty ", BindingFlags.NonPublic | BindingFlags.Instance);
+        
         private void InvalidateDefinitions()
         {
             if (ColumnDefinitionsSource is not null && RowDefinitionsSource is not null)
@@ -56,7 +59,8 @@ namespace GridDemo
                 RowDefinitions.AddRange(rows);
 
                 // HACK
-                ChildrenChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                // ChildrenChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+                s_cellsStructureDirty.SetValue(true, this);
 
                 InvalidateMeasure();
                 InvalidateArrange();
