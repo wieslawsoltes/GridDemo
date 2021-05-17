@@ -1,0 +1,60 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GridDemo"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="GridDemo.MainWindow"
+        x:CompileBindings="True" x:DataType="local:MainWindowViewModel"
+        Title="GridDemo">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <DockPanel>
+
+        <ComboBox x:Name="LayoutsComboBox"
+                  DockPanel.Dock="Left" 
+                  Items="{Binding Layouts}"
+                  SelectedIndex="{Binding LayoutIndex}"
+                  SelectionChanged="LayoutComboBox_OnSelectionChanged">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center">
+            <ItemsControl x:Name="TilesItemsControl"
+                          Items="{Binding Tiles}">
+                <ItemsControl.Styles>
+                    <Style Selector="ItemsControl > ContentPresenter" x:DataType="local:TileItem">
+                        <Setter Property="Grid.Column" Value="{Binding CurrentTilePreset.Column}"/>
+                        <Setter Property="Grid.Row" Value="{Binding CurrentTilePreset.Row}"/>
+                        <Setter Property="Grid.ColumnSpan" Value="{Binding CurrentTilePreset.ColumnSpan}"/>
+                        <Setter Property="Grid.RowSpan" Value="{Binding CurrentTilePreset.RowSpan}"/>
+                    </Style>
+                </ItemsControl.Styles>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <local:CustomGrid ColumnDefinitionsSource="{Binding CurrentLayout.ColumnDefinitions}"
+                                          RowDefinitionsSource="{Binding CurrentLayout.RowDefinitions}"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.DataTemplates>
+                    <DataTemplate DataType="local:TileItem">
+                        <Rectangle Fill="{Binding Background}"/>
+                    </DataTemplate>
+                </ItemsControl.DataTemplates>
+            </ItemsControl>
+        </ScrollViewer>
+        
+    </DockPanel>
+    
+
+    
+</Window>
