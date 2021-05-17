@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
@@ -53,6 +54,9 @@ namespace GridDemo
                 var rows = GridLength.ParseLengths(RowDefinitionsSource).Select(x => new RowDefinition(x));
                 RowDefinitions.Clear();
                 RowDefinitions.AddRange(rows);
+
+                // HACK
+                ChildrenChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
 
                 InvalidateMeasure();
                 InvalidateArrange();
