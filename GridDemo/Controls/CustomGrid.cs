@@ -77,6 +77,7 @@ namespace GridDemo
                 // HACK
                 // s_data.SetValue(this, null);
 
+                // HACK: Force property update.
                 (this.DataContext as MainWindowViewModel)?.UpdateTiles();
 
                 // ColumnDefinitions = ColumnDefinitions.Parse(ColumnDefinitionsSource);
