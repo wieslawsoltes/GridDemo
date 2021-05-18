@@ -2,6 +2,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:behaviors="clr-namespace:GridDemo.Behaviors"
         xmlns:controls="clr-namespace:GridDemo.Controls"
         xmlns:vm="clr-namespace:GridDemo.ViewModels"
         xmlns:tc="clr-namespace:GridDemo.ViewModels.TileControl"
@@ -25,43 +27,61 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto"
-                      HorizontalScrollBarVisibility="Auto"
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Center">
-            <ItemsControl Items="{Binding Tiles}">
-                <ItemsControl.Styles>
-                    <Style Selector="ItemsControl > ContentPresenter" x:DataType="tc:TileViewModel">
-                        <Setter Property="Grid.Column" Value="{Binding Column}" />
-                        <Setter Property="Grid.Row" Value="{Binding Row}" />
-                        <Setter Property="Grid.ColumnSpan" Value="{Binding ColumnSpan}" />
-                        <Setter Property="Grid.RowSpan" Value="{Binding RowSpan}" />
-                    </Style>
-                </ItemsControl.Styles>
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <controls:BindableGrid ColumnDefinitionsSource="{Binding CurrentLayout.ColumnDefinitions}"
-                                               RowDefinitionsSource="{Binding CurrentLayout.RowDefinitions}"
-                                               ShowGridLines="False" />
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.DataTemplates>
-                    <DataTemplate DataType="tc:TileViewModel">
-                        <Border Background="{Binding Background}">
-                            <StackPanel x:CompileBindings="False"
-                                        Background="Gray"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center">
-                                <TextBlock Text="{Binding $parent[ContentPresenter].(Grid.Column)}" />
-                                <TextBlock Text="{Binding $parent[ContentPresenter].(Grid.Row)}" />
-                                <TextBlock Text="{Binding $parent[ContentPresenter].(Grid.ColumnSpan)}" />
-                                <TextBlock Text="{Binding $parent[ContentPresenter].(Grid.RowSpan)}" />
-                            </StackPanel>
-                        </Border>
-                    </DataTemplate>
-                </ItemsControl.DataTemplates>
-            </ItemsControl>
-        </ScrollViewer>
+        <DockPanel x:Name="Panel">
+            <i:Interaction.Behaviors>
+                <behaviors:BoundsObserverBehavior Bounds="{Binding #Panel.Bounds, Mode=OneWay}"
+                                                  Width="{Binding WidthSource, Mode=TwoWay}"
+                                                  Height="{Binding HeightSource, Mode=TwoWay}"
+                                                  x:CompileBindings="False"/>
+            </i:Interaction.Behaviors>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          DockPanel.Dock="Top">
+                <ItemsControl Items="{Binding Tiles}">
+                    <ItemsControl.Styles>
+                        <Style Selector="ItemsControl > ContentPresenter" x:DataType="tc:TileViewModel">
+                            <Setter Property="Grid.Column" Value="{Binding Column}" />
+                            <Setter Property="Grid.Row" Value="{Binding Row}" />
+                            <Setter Property="Grid.ColumnSpan" Value="{Binding ColumnSpan}" />
+                            <Setter Property="Grid.RowSpan" Value="{Binding RowSpan}" />
+                        </Style>
+                    </ItemsControl.Styles>
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <controls:BindableGrid ColumnDefinitionsSource="{Binding CurrentLayout.ColumnDefinitions}"
+                                                   RowDefinitionsSource="{Binding CurrentLayout.RowDefinitions}"
+                                                   ShowGridLines="False" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.DataTemplates>
+                        <DataTemplate DataType="tc:TileViewModel">
+                            <Border Background="{Binding Background}">
+                                <StackPanel x:CompileBindings="False"
+                                            Background="Gray"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding $parent[ContentPresenter].(Grid.Column)}" />
+                                    <TextBlock Text="{Binding $parent[ContentPresenter].(Grid.Row)}" />
+                                    <TextBlock Text="{Binding $parent[ContentPresenter].(Grid.ColumnSpan)}" />
+                                    <TextBlock Text="{Binding $parent[ContentPresenter].(Grid.RowSpan)}" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.DataTemplates>
+                </ItemsControl>
+            </ScrollViewer>
+
+            <ListBox>
+                <ListBoxItem>Item1</ListBoxItem>
+                <ListBoxItem>Item2</ListBoxItem>
+                <ListBoxItem>Item3</ListBoxItem>
+            </ListBox>
+
+        </DockPanel>
+
 
     </DockPanel>
 
