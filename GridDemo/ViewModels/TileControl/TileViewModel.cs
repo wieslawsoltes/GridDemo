@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Avalonia.Media;
 using ReactiveUI;
 
@@ -7,10 +7,10 @@ namespace GridDemo.ViewModels.TileControl
 {
 	public class TileViewModel : ViewModelBase
 	{
-		private ObservableCollection<TilePresetViewModel>? _tilePresets;
+		private IList<TilePresetViewModel>? _tilePresets;
 		private int _tilePresetIndex;
 
-		public ObservableCollection<TilePresetViewModel>? TilePresets
+		public IList<TilePresetViewModel>? TilePresets
 		{
 			get => _tilePresets;
 			set => this.RaiseAndSetIfChanged(ref _tilePresets, value);
