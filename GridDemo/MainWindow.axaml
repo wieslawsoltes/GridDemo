@@ -42,7 +42,8 @@
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <local:CustomGrid ColumnDefinitionsSource="{Binding CurrentLayout.ColumnDefinitions}"
-                                          RowDefinitionsSource="{Binding CurrentLayout.RowDefinitions}"/>
+                                          RowDefinitionsSource="{Binding CurrentLayout.RowDefinitions}"
+                                          ShowGridLines="True"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.DataTemplates>
