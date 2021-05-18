@@ -96,8 +96,14 @@ namespace GridDemo
                 s_invalidate.Invoke(this, new object[]{});
 
                 InvalidateMeasure();
-                // InvalidateArrange();
+                InvalidateArrange();
                 // InvalidateVisual();
+
+                foreach (var child in Children)
+                {
+                    child.InvalidateMeasure();
+                    child.InvalidateArrange();
+                }
             }
         }
     }
