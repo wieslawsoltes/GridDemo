@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using Avalonia.Media;
 using GridDemo.ViewModels.TileControl;
 using ReactiveUI;
@@ -12,6 +13,8 @@ namespace GridDemo.ViewModels
 		private IList<TileViewModel>? _tiles;
 		private IList<TileLayoutViewModel>? _layouts;
 		private int _layoutIndex;
+		private double _widthSource;
+		private double _heightSource;
 
 		public IList<TileViewModel>? Tiles
 		{
@@ -29,6 +32,18 @@ namespace GridDemo.ViewModels
 		{
 			get => _layoutIndex;
 			set => this.RaiseAndSetIfChanged(ref _layoutIndex, value);
+		}
+
+		public double WidthSource
+		{
+			get => _widthSource;
+			set => this.RaiseAndSetIfChanged(ref _widthSource, value);
+		}
+
+		public double HeightSource
+		{
+			get => _heightSource;
+			set => this.RaiseAndSetIfChanged(ref _heightSource, value);
 		}
 
 		public TileLayoutViewModel? CurrentLayout => Layouts?[LayoutIndex];
@@ -113,6 +128,32 @@ namespace GridDemo.ViewModels
 
 			this.WhenAnyValue(x => x.LayoutIndex)
 				.Subscribe(_ => UpdateTiles());
+
+			this.WhenAnyValue(x => x.WidthSource)
+				.Subscribe(x => LayoutSelector(x, _heightSource));
+
+			this.WhenAnyValue(x => x.HeightSource)
+				.Subscribe(x => LayoutSelector(_widthSource, x));
+		}
+
+		private void LayoutSelector(double width, double height)
+		{
+			Debug.WriteLine($"LayoutSelector {width} {height}");
+			if (height < 504)
+			{
+				LayoutIndex = 0;
+			}
+			else
+			{
+				if (width < 1200)
+				{
+					LayoutIndex = 1;
+				}
+				else
+				{
+					LayoutIndex = 2;
+				}
+			}
 		}
 
 		private void NotifyLayoutChanged()
