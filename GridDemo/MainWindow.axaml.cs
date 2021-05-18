@@ -28,7 +28,7 @@ namespace GridDemo
         private void LayoutComboBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
         {
             (this.DataContext as MainWindowViewModel)?.UpdateTiles();
-            
+
             // TilesItemsControl?.InvalidateMeasure();
             // TilesItemsControl?.InvalidateArrange();
 
