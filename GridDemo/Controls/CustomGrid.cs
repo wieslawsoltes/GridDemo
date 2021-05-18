@@ -77,6 +77,8 @@ namespace GridDemo
                 // HACK
                 // s_data.SetValue(this, null);
 
+                (this.DataContext as MainWindowViewModel)?.UpdateTiles();
+
                 // ColumnDefinitions = ColumnDefinitions.Parse(ColumnDefinitionsSource);
                 var columns = GridLength.ParseLengths(ColumnDefinitionsSource).Select(x => new ColumnDefinition(x));
                 ColumnDefinitions.Clear();
