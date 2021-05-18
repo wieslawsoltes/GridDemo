@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Avalonia.Media;
 using GridDemo.ViewModels.TileControl;
@@ -8,17 +9,17 @@ namespace GridDemo.ViewModels
 {
 	public class MainWindowViewModel : ViewModelBase
 	{
-		private ObservableCollection<TileViewModel>? _tiles;
-		private ObservableCollection<TileLayoutViewModel>? _layouts;
+		private IList<TileViewModel>? _tiles;
+		private IList<TileLayoutViewModel>? _layouts;
 		private int _layoutIndex;
 
-		public ObservableCollection<TileViewModel>? Tiles
+		public IList<TileViewModel>? Tiles
 		{
 			get => _tiles;
 			set => this.RaiseAndSetIfChanged(ref _tiles, value);
 		}
 
-		public ObservableCollection<TileLayoutViewModel>? Layouts
+		public IList<TileLayoutViewModel>? Layouts
 		{
 			get => _layouts;
 			set => this.RaiseAndSetIfChanged(ref _layouts, value);
