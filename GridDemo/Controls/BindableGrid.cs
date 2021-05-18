@@ -4,13 +4,13 @@ using Avalonia.Controls;
 
 namespace GridDemo.Controls
 {
-    public class CustomGrid : Grid
+    public class BindableGrid : Grid
     {
         public static readonly StyledProperty<string?> ColumnDefinitionsSourceProperty =
-            AvaloniaProperty.Register<CustomGrid, string?>(nameof(ColumnDefinitionsSource));
+            AvaloniaProperty.Register<BindableGrid, string?>(nameof(ColumnDefinitionsSource));
 
         public static readonly StyledProperty<string?> RowDefinitionsSourceProperty =
-            AvaloniaProperty.Register<CustomGrid, string?>(nameof(RowDefinitionsSource));
+            AvaloniaProperty.Register<BindableGrid, string?>(nameof(RowDefinitionsSource));
 
         public string? ColumnDefinitionsSource
         {
@@ -24,7 +24,7 @@ namespace GridDemo.Controls
             set => SetValue(RowDefinitionsSourceProperty, value);
         }
 
-        public CustomGrid()
+        public BindableGrid()
         {
             InvalidateDefinitions();
         }

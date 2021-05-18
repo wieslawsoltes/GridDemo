@@ -44,9 +44,9 @@
                 </ItemsControl.Styles>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <controls:CustomGrid ColumnDefinitionsSource="{Binding CurrentLayout.ColumnDefinitions}"
-                                          RowDefinitionsSource="{Binding CurrentLayout.RowDefinitions}"
-                                          ShowGridLines="True"/>
+                        <controls:BindableGrid ColumnDefinitionsSource="{Binding CurrentLayout.ColumnDefinitions}"
+                                               RowDefinitionsSource="{Binding CurrentLayout.RowDefinitions}"
+                                               ShowGridLines="False"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.DataTemplates>
