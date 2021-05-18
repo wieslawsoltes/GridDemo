@@ -45,6 +45,18 @@ namespace GridDemo
         private static readonly PropertyInfo? s_cellsStructureDirty = 
             typeof(Grid).GetProperty("CellsStructureDirty", BindingFlags.NonPublic | BindingFlags.Instance);
         
+        private static readonly PropertyInfo? s_columnDefinitionsDirty = 
+            typeof(Grid).GetProperty("ColumnDefinitionsDirty", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        private static readonly PropertyInfo? s_rowDefinitionsDirty = 
+            typeof(Grid).GetProperty("RowDefinitionsDirty", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        private static readonly MethodInfo? s_validateCells = 
+            typeof(Grid).GetMethod("ValidateCells", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        private static readonly MethodInfo? s_invalidate = 
+            typeof(Grid).GetMethod("Invalidate", BindingFlags.NonPublic | BindingFlags.Instance);
+
         private void InvalidateDefinitions()
         {
             if (ColumnDefinitionsSource is not null && RowDefinitionsSource is not null)
@@ -61,10 +73,16 @@ namespace GridDemo
 
                 // HACK
                 // ChildrenChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+               // s_cellsStructureDirty.SetValue(this, true);
+                s_columnDefinitionsDirty.SetValue(this, true);
+                s_rowDefinitionsDirty.SetValue(this, true);
                 s_cellsStructureDirty.SetValue(this, true);
+                s_validateCells.Invoke(this, new object[]{});
+                s_invalidate.Invoke(this, new object[]{});
 
                 InvalidateMeasure();
-                InvalidateArrange();
+                // InvalidateArrange();
+                // InvalidateVisual();
             }
         }
     }
