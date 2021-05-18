@@ -70,7 +70,7 @@ namespace GridDemo
             AffectsParentMeasure<CustomGrid>(ColumnDefinitionsSourceProperty, RowDefinitionsSourceProperty);
         }
 
-        private void InvalidateDefinitions()
+        public void InvalidateDefinitions()
         {
             if (ColumnDefinitionsSource is not null && RowDefinitionsSource is not null)
             {
