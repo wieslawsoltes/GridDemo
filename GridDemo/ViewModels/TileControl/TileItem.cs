@@ -29,15 +29,15 @@ namespace GridDemo.ViewModels.TileControl
         }
 
         public int Column => CurrentTilePreset?.Column ?? 0;
-        
+
         public int Row => CurrentTilePreset?.Row ?? 0;
-        
+
         public int ColumnSpan => CurrentTilePreset?.ColumnSpan ?? 1;
-        
+
         public int RowSpan => CurrentTilePreset?.RowSpan ?? 1;
 
         public TilePreset? CurrentTilePreset => TilePresets?[TilePresetIndex];
-        
+
         public IBrush? Background { get; set; }
 
         private void NotifyPresetChanged()
@@ -48,6 +48,5 @@ namespace GridDemo.ViewModels.TileControl
             this.RaisePropertyChanged(nameof(ColumnSpan));
             this.RaisePropertyChanged(nameof(RowSpan));
         }
-
     }
 }
