@@ -114,7 +114,7 @@ namespace GridDemo
                 .Subscribe(x => UpdateTiles());
         }
 
-        public void UpdateTiles()
+        private void UpdateTiles()
         {
             foreach (var tile in Tiles)
             {

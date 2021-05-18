@@ -13,11 +13,9 @@
 
     <DockPanel>
 
-        <ComboBox x:Name="LayoutsComboBox"
-                  DockPanel.Dock="Left" 
+        <ComboBox DockPanel.Dock="Left" 
                   Items="{Binding Layouts}"
-                  SelectedIndex="{Binding LayoutIndex}"
-                  SelectionChanged="LayoutComboBox_OnSelectionChanged">
+                  SelectedIndex="{Binding LayoutIndex}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Name}"/>
@@ -29,8 +27,7 @@
                       HorizontalScrollBarVisibility="Auto"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center">
-            <ItemsControl x:Name="TilesItemsControl"
-                          Items="{Binding Tiles}">
+            <ItemsControl Items="{Binding Tiles}">
                 <ItemsControl.Styles>
                     <Style Selector="ItemsControl > ContentPresenter" x:DataType="local:TileItem">
                         <Setter Property="Grid.Column" Value="{Binding CurrentTilePreset.Column}"/>
@@ -45,8 +42,7 @@
                 </ItemsControl.Styles>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <local:CustomGrid x:Name="CustomGrid"
-                                          ColumnDefinitionsSource="{Binding CurrentLayout.ColumnDefinitions}"
+                        <local:CustomGrid ColumnDefinitionsSource="{Binding CurrentLayout.ColumnDefinitions}"
                                           RowDefinitionsSource="{Binding CurrentLayout.RowDefinitions}"
                                           ShowGridLines="True"/>
                     </ItemsPanelTemplate>
