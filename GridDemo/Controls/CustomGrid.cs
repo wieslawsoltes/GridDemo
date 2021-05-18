@@ -40,7 +40,7 @@ namespace GridDemo.Controls
             }
         }
 
-        public void InvalidateDefinitions()
+        private void InvalidateDefinitions()
         {
             if (ColumnDefinitionsSource is not null && RowDefinitionsSource is not null)
             {
