@@ -28,6 +28,8 @@ namespace GridDemo
 
         public CustomGrid()
         {
+            // HACK
+            // s_listenToNotifications.SetValue(this, true);
             InvalidateDefinitions();
         }
 
@@ -41,6 +43,12 @@ namespace GridDemo
                 InvalidateDefinitions();
             }
         }
+
+        private static readonly FieldInfo? s_data = 
+            typeof(Grid).GetField("_data", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        private static readonly PropertyInfo? s_listenToNotifications = 
+            typeof(Grid).GetProperty("ListenToNotifications", BindingFlags.NonPublic | BindingFlags.Instance);
 
         private static readonly PropertyInfo? s_cellsStructureDirty = 
             typeof(Grid).GetProperty("CellsStructureDirty", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -57,10 +65,18 @@ namespace GridDemo
         private static readonly MethodInfo? s_invalidate = 
             typeof(Grid).GetMethod("Invalidate", BindingFlags.NonPublic | BindingFlags.Instance);
 
+        static CustomGrid()
+        {
+            AffectsParentMeasure<CustomGrid>(ColumnDefinitionsSourceProperty, RowDefinitionsSourceProperty);
+        }
+
         private void InvalidateDefinitions()
         {
             if (ColumnDefinitionsSource is not null && RowDefinitionsSource is not null)
             {
+                // HACK
+                // s_data.SetValue(this, null);
+
                 // ColumnDefinitions = ColumnDefinitions.Parse(ColumnDefinitionsSource);
                 var columns = GridLength.ParseLengths(ColumnDefinitionsSource).Select(x => new ColumnDefinition(x));
                 ColumnDefinitions.Clear();
@@ -73,7 +89,6 @@ namespace GridDemo
 
                 // HACK
                 // ChildrenChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-               // s_cellsStructureDirty.SetValue(this, true);
                 s_columnDefinitionsDirty.SetValue(this, true);
                 s_rowDefinitionsDirty.SetValue(this, true);
                 s_cellsStructureDirty.SetValue(this, true);
