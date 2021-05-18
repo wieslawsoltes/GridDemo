@@ -42,6 +42,8 @@ namespace GridDemo.ViewModels
 				new TileLayoutViewModel("Wide", "228,228", "126,252,252"),
 			};
 
+			LayoutIndex = 1;
+
 			Tiles = new ObservableCollection<TileViewModel>()
 			{
 				// 0
@@ -105,8 +107,6 @@ namespace GridDemo.ViewModels
 					TilePresetIndex = LayoutIndex
 				},
 			};
-
-			LayoutIndex = 1;
 
 			this.WhenAnyValue(x => x.LayoutIndex)
 				.Subscribe(_ => NotifyLayoutChanged());
