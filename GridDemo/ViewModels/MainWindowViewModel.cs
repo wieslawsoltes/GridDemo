@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using Avalonia.Media;
 using ReactiveUI;
 
@@ -108,6 +109,9 @@ namespace GridDemo
                     TilePresetIndex = LayoutIndex
                 },
             };
+
+            this.WhenAnyValue(x => x.LayoutIndex)
+                .Subscribe(x => UpdateTiles());
         }
 
         public void UpdateTiles()
