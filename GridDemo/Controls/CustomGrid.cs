@@ -42,7 +42,8 @@ namespace GridDemo
             }
         }
 
-        private static readonly FieldInfo? s_cellsStructureDirty = typeof(Grid).GetField("CellsStructureDirty ", BindingFlags.NonPublic | BindingFlags.Instance);
+        private static readonly PropertyInfo? s_cellsStructureDirty = 
+            typeof(Grid).GetProperty("CellsStructureDirty", BindingFlags.NonPublic | BindingFlags.Instance);
         
         private void InvalidateDefinitions()
         {
@@ -60,7 +61,7 @@ namespace GridDemo
 
                 // HACK
                 // ChildrenChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-                s_cellsStructureDirty.SetValue(true, this);
+                s_cellsStructureDirty.SetValue(this, true);
 
                 InvalidateMeasure();
                 InvalidateArrange();
