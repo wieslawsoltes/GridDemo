@@ -89,21 +89,21 @@ namespace GridDemo
 
                 // HACK
                 // ChildrenChanged(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
-                s_columnDefinitionsDirty.SetValue(this, true);
-                s_rowDefinitionsDirty.SetValue(this, true);
-                s_cellsStructureDirty.SetValue(this, true);
-                s_validateCells.Invoke(this, new object[]{});
-                s_invalidate.Invoke(this, new object[]{});
+                // s_columnDefinitionsDirty.SetValue(this, true);
+                // s_rowDefinitionsDirty.SetValue(this, true);
+                // s_cellsStructureDirty.SetValue(this, true);
+                // s_validateCells.Invoke(this, new object[]{});
+                // s_invalidate.Invoke(this, new object[]{});
 
                 InvalidateMeasure();
                 InvalidateArrange();
                 // InvalidateVisual();
 
-                foreach (var child in Children)
-                {
-                    child.InvalidateMeasure();
-                    child.InvalidateArrange();
-                }
+                // foreach (var child in Children)
+                // {
+                //     child.InvalidateMeasure();
+                //     child.InvalidateArrange();
+                // }
             }
         }
     }

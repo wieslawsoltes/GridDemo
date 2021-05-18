@@ -33,14 +33,14 @@
                           Items="{Binding Tiles}">
                 <ItemsControl.Styles>
                     <Style Selector="ItemsControl > ContentPresenter" x:DataType="local:TileItem">
-                        <!-- <Setter Property="Grid.Column" Value="{Binding CurrentTilePreset.Column}"/> -->
-                        <!-- <Setter Property="Grid.Row" Value="{Binding CurrentTilePreset.Row}"/> -->
-                        <!-- <Setter Property="Grid.ColumnSpan" Value="{Binding CurrentTilePreset.ColumnSpan}"/> -->
-                        <!-- <Setter Property="Grid.RowSpan" Value="{Binding CurrentTilePreset.RowSpan}"/> -->
-                        <Setter Property="Grid.Column" Value="{Binding Column}"/>
-                        <Setter Property="Grid.Row" Value="{Binding Row}"/>
-                        <Setter Property="Grid.ColumnSpan" Value="{Binding ColumnSpan}"/>
-                        <Setter Property="Grid.RowSpan" Value="{Binding RowSpan}"/>
+                        <Setter Property="Grid.Column" Value="{Binding CurrentTilePreset.Column}"/>
+                        <Setter Property="Grid.Row" Value="{Binding CurrentTilePreset.Row}"/>
+                        <Setter Property="Grid.ColumnSpan" Value="{Binding CurrentTilePreset.ColumnSpan}"/>
+                        <Setter Property="Grid.RowSpan" Value="{Binding CurrentTilePreset.RowSpan}"/>
+                        <!-- <Setter Property="Grid.Column" Value="{Binding Column}"/> -->
+                        <!-- <Setter Property="Grid.Row" Value="{Binding Row}"/> -->
+                        <!-- <Setter Property="Grid.ColumnSpan" Value="{Binding ColumnSpan}"/> -->
+                        <!-- <Setter Property="Grid.RowSpan" Value="{Binding RowSpan}"/> -->
                     </Style>
                 </ItemsControl.Styles>
                 <ItemsControl.ItemsPanel>
