@@ -1,6 +1,6 @@
 using ReactiveUI;
 
-namespace GridDemo
+namespace GridDemo.ViewModels.TileControl
 {
     public class TilePreset : ViewModelBase
     {

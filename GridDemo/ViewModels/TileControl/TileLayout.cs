@@ -1,36 +1,36 @@
 using ReactiveUI;
 
-namespace GridDemo
+namespace GridDemo.ViewModels.TileControl
 {
-    public class GridLayout : ViewModelBase
+    public class TileLayout : ViewModelBase
     {
-        private string _name;
-        private string _columnDefinitions;
-        private string _rowDefinitions;
+        private string? _name;
+        private string? _columnDefinitions;
+        private string? _rowDefinitions;
 
-        public string Name
+        public string? Name
         {
             get => _name;
             set => this.RaiseAndSetIfChanged(ref _name, value);
         }
 
-        public string ColumnDefinitions
+        public string? ColumnDefinitions
         {
             get => _columnDefinitions;
             set => this.RaiseAndSetIfChanged(ref _columnDefinitions, value);
         }
 
-        public string RowDefinitions
+        public string? RowDefinitions
         {
             get => _rowDefinitions;
             set => this.RaiseAndSetIfChanged(ref _rowDefinitions, value);
         }
 
-        public GridLayout()
+        public TileLayout()
         {
         }
 
-        public GridLayout(string name, string columnDefinitions, string rowDefinitions)
+        public TileLayout(string name, string columnDefinitions, string rowDefinitions)
         {
             Name = name;
             ColumnDefinitions = columnDefinitions;

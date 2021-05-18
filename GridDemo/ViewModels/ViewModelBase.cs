@@ -1,6 +1,6 @@
 using ReactiveUI;
 
-namespace GridDemo
+namespace GridDemo.ViewModels
 {
     public class ViewModelBase : ReactiveObject
     {

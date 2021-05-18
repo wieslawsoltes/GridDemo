@@ -3,14 +3,14 @@ using System.Collections.ObjectModel;
 using Avalonia.Media;
 using ReactiveUI;
 
-namespace GridDemo
+namespace GridDemo.ViewModels.TileControl
 {
     public class TileItem : ViewModelBase
     {
-        private ObservableCollection<TilePreset> _tilePresets;
+        private ObservableCollection<TilePreset>? _tilePresets;
         private int _tilePresetIndex;
 
-        public ObservableCollection<TilePreset> TilePresets
+        public ObservableCollection<TilePreset>? TilePresets
         {
             get => _tilePresets;
             set => this.RaiseAndSetIfChanged(ref _tilePresets, value);
@@ -25,20 +25,20 @@ namespace GridDemo
         public TileItem()
         {
             this.WhenAnyValue(x => x.TilePresetIndex)
-                .Subscribe(x => NotifyPresetChanged());
+                .Subscribe(_ => NotifyPresetChanged());
         }
 
-        public int Column => CurrentTilePreset.Column;
+        public int Column => CurrentTilePreset?.Column ?? 0;
         
-        public int Row => CurrentTilePreset.Row;
+        public int Row => CurrentTilePreset?.Row ?? 0;
         
-        public int ColumnSpan => CurrentTilePreset.ColumnSpan;
+        public int ColumnSpan => CurrentTilePreset?.ColumnSpan ?? 1;
         
-        public int RowSpan => CurrentTilePreset.RowSpan;
+        public int RowSpan => CurrentTilePreset?.RowSpan ?? 1;
 
-        public TilePreset CurrentTilePreset => TilePresets[TilePresetIndex];
+        public TilePreset? CurrentTilePreset => TilePresets?[TilePresetIndex];
         
-        public IBrush Background { get; set; }
+        public IBrush? Background { get; set; }
 
         private void NotifyPresetChanged()
         {

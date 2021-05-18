@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using Avalonia.Media;
+using GridDemo.ViewModels.TileControl;
 using ReactiveUI;
 
-namespace GridDemo
+namespace GridDemo.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private ObservableCollection<TileItem> _tiles;
-        private ObservableCollection<GridLayout> _layouts;
+        private ObservableCollection<TileItem>? _tiles;
+        private ObservableCollection<TileLayout>? _layouts;
         private int _layoutIndex;
 
-        public ObservableCollection<TileItem> Tiles
+        public ObservableCollection<TileItem>? Tiles
         {
             get => _tiles;
             set => this.RaiseAndSetIfChanged(ref _tiles, value);
         }
 
-        public ObservableCollection<GridLayout> Layouts
+        public ObservableCollection<TileLayout>? Layouts
         {
             get => _layouts;
             set => this.RaiseAndSetIfChanged(ref _layouts, value);
@@ -33,17 +34,17 @@ namespace GridDemo
             }
         }
 
-        public GridLayout CurrentLayout => Layouts[LayoutIndex];
+        public TileLayout? CurrentLayout => Layouts?[LayoutIndex];
 
         public MainWindowViewModel()
         {
             LayoutIndex = 2;
 
-            Layouts = new ObservableCollection<GridLayout>()
+            Layouts = new ObservableCollection<TileLayout>()
             {
-                new GridLayout("Small", "228,228,228,228,228", "126"),
-                new GridLayout("Normal", "228,228,228", "126,252"),
-                new GridLayout("Wide", "228,228", "126,252,252"),
+                new TileLayout("Small", "228,228,228,228,228", "126"),
+                new TileLayout("Normal", "228,228,228", "126,252"),
+                new TileLayout("Wide", "228,228", "126,252,252"),
             };
 
             Tiles = new ObservableCollection<TileItem>()
@@ -111,14 +112,17 @@ namespace GridDemo
             };
 
             this.WhenAnyValue(x => x.LayoutIndex)
-                .Subscribe(x => UpdateTiles());
+                .Subscribe(_ => UpdateTiles());
         }
 
         private void UpdateTiles()
         {
-            foreach (var tile in Tiles)
+            if (Tiles != null)
             {
-                tile.TilePresetIndex = LayoutIndex;
+                foreach (var tile in Tiles)
+                {
+                    tile.TilePresetIndex = LayoutIndex;
+                }
             }
         }
     }

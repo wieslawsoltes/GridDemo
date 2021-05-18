@@ -2,7 +2,7 @@ using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 
-namespace GridDemo
+namespace GridDemo.Controls
 {
     public class CustomGrid : Grid
     {
@@ -39,11 +39,6 @@ namespace GridDemo
                 InvalidateDefinitions();
             }
         }
-
-        // static CustomGrid()
-        // {
-        //     AffectsParentMeasure<CustomGrid>(ColumnDefinitionsSourceProperty, RowDefinitionsSourceProperty);
-        // }
 
         public void InvalidateDefinitions()
         {
