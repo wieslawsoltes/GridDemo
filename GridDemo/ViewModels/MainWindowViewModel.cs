@@ -8,17 +8,17 @@ namespace GridDemo.ViewModels
 {
 	public class MainWindowViewModel : ViewModelBase
 	{
-		private ObservableCollection<TileItem>? _tiles;
-		private ObservableCollection<TileLayout>? _layouts;
+		private ObservableCollection<TileViewModel>? _tiles;
+		private ObservableCollection<TileLayoutViewModel>? _layouts;
 		private int _layoutIndex;
 
-		public ObservableCollection<TileItem>? Tiles
+		public ObservableCollection<TileViewModel>? Tiles
 		{
 			get => _tiles;
 			set => this.RaiseAndSetIfChanged(ref _tiles, value);
 		}
 
-		public ObservableCollection<TileLayout>? Layouts
+		public ObservableCollection<TileLayoutViewModel>? Layouts
 		{
 			get => _layouts;
 			set => this.RaiseAndSetIfChanged(ref _layouts, value);
@@ -34,78 +34,78 @@ namespace GridDemo.ViewModels
 			}
 		}
 
-		public TileLayout? CurrentLayout => Layouts?[LayoutIndex];
+		public TileLayoutViewModel? CurrentLayout => Layouts?[LayoutIndex];
 
 		public MainWindowViewModel()
 		{
 			LayoutIndex = 2;
 
-			Layouts = new ObservableCollection<TileLayout>()
+			Layouts = new ObservableCollection<TileLayoutViewModel>()
 			{
-				new TileLayout("Small", "228,228,228,228,228", "126"),
-				new TileLayout("Normal", "228,228,228", "126,252"),
-				new TileLayout("Wide", "228,228", "126,252,252"),
+				new TileLayoutViewModel("Small", "228,228,228,228,228", "126"),
+				new TileLayoutViewModel("Normal", "228,228,228", "126,252"),
+				new TileLayoutViewModel("Wide", "228,228", "126,252,252"),
 			};
 
-			Tiles = new ObservableCollection<TileItem>()
+			Tiles = new ObservableCollection<TileViewModel>()
 			{
 				// 0
-				new TileItem()
+				new TileViewModel()
 				{
 					Background = Brushes.Red,
-					TilePresets = new ObservableCollection<TilePreset>()
+					TilePresets = new ObservableCollection<TilePresetViewModel>()
 					{
-						new TilePreset(0, 0, 1, 1),
-						new TilePreset(0, 0, 1, 1),
-						new TilePreset(0, 0, 1, 1),
+						new TilePresetViewModel(0, 0, 1, 1),
+						new TilePresetViewModel(0, 0, 1, 1),
+						new TilePresetViewModel(0, 0, 1, 1),
 					},
 					TilePresetIndex = LayoutIndex
 				},
 				// 1
-				new TileItem()
+				new TileViewModel()
 				{
 					Background = Brushes.Green,
-					TilePresets = new ObservableCollection<TilePreset>()
+					TilePresets = new ObservableCollection<TilePresetViewModel>()
 					{
-						new TilePreset(1, 0, 1, 1),
-						new TilePreset(1, 0, 1, 1),
-						new TilePreset(1, 0, 1, 1),
+						new TilePresetViewModel(1, 0, 1, 1),
+						new TilePresetViewModel(1, 0, 1, 1),
+						new TilePresetViewModel(1, 0, 1, 1),
 					},
 					TilePresetIndex = LayoutIndex
 				},
 				// 2
-				new TileItem()
+				new TileViewModel()
 				{
 					Background = Brushes.Blue,
-					TilePresets = new ObservableCollection<TilePreset>()
+					TilePresets = new ObservableCollection<TilePresetViewModel>()
 					{
-						new TilePreset(2, 0, 1, 1),
-						new TilePreset(2, 0, 1, 1),
-						new TilePreset(0, 1, 1, 1),
+						new TilePresetViewModel(2, 0, 1, 1),
+						new TilePresetViewModel(2, 0, 1, 1),
+						new TilePresetViewModel(0, 1, 1, 1),
 					},
 					TilePresetIndex = LayoutIndex
 				},
 				// 3
-				new TileItem()
+				new TileViewModel()
 				{
 					Background = Brushes.Yellow,
-					TilePresets = new ObservableCollection<TilePreset>()
+					TilePresets = new ObservableCollection<TilePresetViewModel>()
 					{
-						new TilePreset(3, 0, 1, 1),
-						new TilePreset(0, 1, 1, 1),
-						new TilePreset(1, 1, 1, 1),
+						new TilePresetViewModel(3, 0, 1, 1),
+						new TilePresetViewModel(0, 1, 1, 1),
+						new TilePresetViewModel(1, 1, 1, 1),
 					},
 					TilePresetIndex = LayoutIndex
 				},
 				// 4
-				new TileItem()
+				new TileViewModel()
 				{
 					Background = Brushes.Black,
-					TilePresets = new ObservableCollection<TilePreset>()
+					TilePresets = new ObservableCollection<TilePresetViewModel>()
 					{
-						new TilePreset(4, 0, 1, 1),
-						new TilePreset(1, 1, 2, 1),
-						new TilePreset(0, 2, 2, 1),
+						new TilePresetViewModel(4, 0, 1, 1),
+						new TilePresetViewModel(1, 1, 2, 1),
+						new TilePresetViewModel(0, 2, 2, 1),
 					},
 					TilePresetIndex = LayoutIndex
 				},

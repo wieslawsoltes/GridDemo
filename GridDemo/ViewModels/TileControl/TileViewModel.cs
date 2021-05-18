@@ -5,12 +5,12 @@ using ReactiveUI;
 
 namespace GridDemo.ViewModels.TileControl
 {
-	public class TileItem : ViewModelBase
+	public class TileViewModel : ViewModelBase
 	{
-		private ObservableCollection<TilePreset>? _tilePresets;
+		private ObservableCollection<TilePresetViewModel>? _tilePresets;
 		private int _tilePresetIndex;
 
-		public ObservableCollection<TilePreset>? TilePresets
+		public ObservableCollection<TilePresetViewModel>? TilePresets
 		{
 			get => _tilePresets;
 			set => this.RaiseAndSetIfChanged(ref _tilePresets, value);
@@ -22,7 +22,7 @@ namespace GridDemo.ViewModels.TileControl
 			set => this.RaiseAndSetIfChanged(ref _tilePresetIndex, value);
 		}
 
-		public TileItem()
+		public TileViewModel()
 		{
 			this.WhenAnyValue(x => x.TilePresetIndex)
 				.Subscribe(_ => NotifyPresetChanged());
@@ -36,7 +36,7 @@ namespace GridDemo.ViewModels.TileControl
 
 		public int RowSpan => CurrentTilePreset?.RowSpan ?? 1;
 
-		public TilePreset? CurrentTilePreset => TilePresets?[TilePresetIndex];
+		public TilePresetViewModel? CurrentTilePreset => TilePresets?[TilePresetIndex];
 
 		public IBrush? Background { get; set; }
 

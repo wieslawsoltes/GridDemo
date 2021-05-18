@@ -2,7 +2,7 @@ using ReactiveUI;
 
 namespace GridDemo.ViewModels.TileControl
 {
-	public class TileLayout : ViewModelBase
+	public class TileLayoutViewModel : ViewModelBase
 	{
 		private string? _name;
 		private string? _columnDefinitions;
@@ -26,11 +26,11 @@ namespace GridDemo.ViewModels.TileControl
 			set => this.RaiseAndSetIfChanged(ref _rowDefinitions, value);
 		}
 
-		public TileLayout()
+		public TileLayoutViewModel()
 		{
 		}
 
-		public TileLayout(string name, string columnDefinitions, string rowDefinitions)
+		public TileLayoutViewModel(string name, string columnDefinitions, string rowDefinitions)
 		{
 			Name = name;
 			ColumnDefinitions = columnDefinitions;

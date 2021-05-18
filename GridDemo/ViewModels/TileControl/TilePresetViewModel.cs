@@ -2,7 +2,7 @@ using ReactiveUI;
 
 namespace GridDemo.ViewModels.TileControl
 {
-	public class TilePreset : ViewModelBase
+	public class TilePresetViewModel : ViewModelBase
 	{
 		private int _column;
 		private int _row;
@@ -33,11 +33,11 @@ namespace GridDemo.ViewModels.TileControl
 			set => this.RaiseAndSetIfChanged(ref _rowSpan, value);
 		}
 
-		public TilePreset()
+		public TilePresetViewModel()
 		{
 		}
 
-		public TilePreset(int column, int row, int columnSpan, int rowSpan)
+		public TilePresetViewModel(int column, int row, int columnSpan, int rowSpan)
 		{
 			Column = column;
 			Row = row;

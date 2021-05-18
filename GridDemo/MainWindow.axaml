@@ -31,7 +31,7 @@
                       HorizontalAlignment="Center">
             <ItemsControl Items="{Binding Tiles}">
                 <ItemsControl.Styles>
-                    <Style Selector="ItemsControl > ContentPresenter" x:DataType="tc:TileItem">
+                    <Style Selector="ItemsControl > ContentPresenter" x:DataType="tc:TileViewModel">
                         <!-- <Setter Property="Grid.Column" Value="{Binding CurrentTilePreset.Column}"/> -->
                         <!-- <Setter Property="Grid.Row" Value="{Binding CurrentTilePreset.Row}"/> -->
                         <!-- <Setter Property="Grid.ColumnSpan" Value="{Binding CurrentTilePreset.ColumnSpan}"/> -->
@@ -50,7 +50,7 @@
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.DataTemplates>
-                    <DataTemplate DataType="tc:TileItem">
+                    <DataTemplate DataType="tc:TileViewModel">
                         <Border Background="{Binding Background}">
                             <StackPanel x:CompileBindings="False"
                                         Background="Gray"
