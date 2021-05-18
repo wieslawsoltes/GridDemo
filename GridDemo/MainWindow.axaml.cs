@@ -1,6 +1,9 @@
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Presenters;
 using Avalonia.Markup.Xaml;
+using Avalonia.VisualTree;
 
 namespace GridDemo
 {
@@ -25,8 +28,18 @@ namespace GridDemo
         private void LayoutComboBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
         {
             (this.DataContext as MainWindowViewModel)?.UpdateTiles();
-            //TilesItemsControl?.InvalidateMeasure();
-            //TilesItemsControl?.InvalidateArrange();
+            
+            // TilesItemsControl?.InvalidateMeasure();
+            // TilesItemsControl?.InvalidateArrange();
+
+            // if (TilesItemsControl != null)
+            // {
+            //     var customGrid = TilesItemsControl.GetVisualChildren().FirstOrDefault().GetVisualChildren().FirstOrDefault().GetVisualChildren().FirstOrDefault() as CustomGrid;
+            //     if (customGrid != null)
+            //     {
+            //         customGrid.InvalidateDefinitions();
+            //     }
+            // }
         }
     }
 }
