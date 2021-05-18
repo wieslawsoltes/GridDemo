@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using Avalonia.Media;
 using ReactiveUI;
@@ -18,27 +19,35 @@ namespace GridDemo
         public int TilePresetIndex
         {
             get => _tilePresetIndex;
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _tilePresetIndex, value);
-                this.RaisePropertyChanged(nameof(CurrentTilePreset));
-                // this.RaisePropertyChanged(nameof(Column));
-                // this.RaisePropertyChanged(nameof(Row));
-                // this.RaisePropertyChanged(nameof(ColumnSpan));
-                // this.RaisePropertyChanged(nameof(RowSpan));
-            }
+            set => this.RaiseAndSetIfChanged(ref _tilePresetIndex, value);
         }
 
-        // public int Column => CurrentTilePreset.Column;
-        //
-        // public int Row => CurrentTilePreset.Row;
-        //
-        // public int ColumnSpan => CurrentTilePreset.ColumnSpan;
-        //
-        // public int RowSpan => CurrentTilePreset.RowSpan;
+        public TileItem()
+        {
+            this.WhenAnyValue(x => x.TilePresetIndex)
+                .Subscribe(x => NotifyPresetChanged());
+        }
+
+        public int Column => CurrentTilePreset.Column;
+        
+        public int Row => CurrentTilePreset.Row;
+        
+        public int ColumnSpan => CurrentTilePreset.ColumnSpan;
+        
+        public int RowSpan => CurrentTilePreset.RowSpan;
 
         public TilePreset CurrentTilePreset => TilePresets[TilePresetIndex];
         
         public IBrush Background { get; set; }
+
+        private void NotifyPresetChanged()
+        {
+            this.RaisePropertyChanged(nameof(CurrentTilePreset));
+            this.RaisePropertyChanged(nameof(Column));
+            this.RaisePropertyChanged(nameof(Row));
+            this.RaisePropertyChanged(nameof(ColumnSpan));
+            this.RaisePropertyChanged(nameof(RowSpan));
+        }
+
     }
 }
