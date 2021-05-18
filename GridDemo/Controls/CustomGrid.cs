@@ -6,10 +6,10 @@ namespace GridDemo.Controls
 {
     public class CustomGrid : Grid
     {
-        public static readonly StyledProperty<string?> ColumnDefinitionsSourceProperty = 
+        public static readonly StyledProperty<string?> ColumnDefinitionsSourceProperty =
             AvaloniaProperty.Register<CustomGrid, string?>(nameof(ColumnDefinitionsSource));
 
-        public static readonly StyledProperty<string?> RowDefinitionsSourceProperty = 
+        public static readonly StyledProperty<string?> RowDefinitionsSourceProperty =
             AvaloniaProperty.Register<CustomGrid, string?>(nameof(RowDefinitionsSource));
 
         public string? ColumnDefinitionsSource
