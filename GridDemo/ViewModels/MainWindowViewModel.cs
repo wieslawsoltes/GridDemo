@@ -28,11 +28,7 @@ namespace GridDemo.ViewModels
 		public int LayoutIndex
 		{
 			get => _layoutIndex;
-			set
-			{
-				this.RaiseAndSetIfChanged(ref _layoutIndex, value);
-				this.RaisePropertyChanged(nameof(CurrentLayout));
-			}
+			set => this.RaiseAndSetIfChanged(ref _layoutIndex, value);
 		}
 
 		public TileLayoutViewModel? CurrentLayout => Layouts?[LayoutIndex];
@@ -113,7 +109,15 @@ namespace GridDemo.ViewModels
 			};
 
 			this.WhenAnyValue(x => x.LayoutIndex)
+				.Subscribe(_ => NotifyLayoutChanged());
+
+			this.WhenAnyValue(x => x.LayoutIndex)
 				.Subscribe(_ => UpdateTiles());
+		}
+
+		private void NotifyLayoutChanged()
+		{
+			this.RaisePropertyChanged(nameof(CurrentLayout));
 		}
 
 		private void UpdateTiles()
