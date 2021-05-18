@@ -12,6 +12,11 @@ namespace GridDemo.Controls
         public static readonly StyledProperty<string?> RowDefinitionsSourceProperty =
             AvaloniaProperty.Register<BindableGrid, string?>(nameof(RowDefinitionsSource));
 
+        public BindableGrid()
+        {
+            InvalidateDefinitions();
+        }
+
         public string? ColumnDefinitionsSource
         {
             get => GetValue(ColumnDefinitionsSourceProperty);
@@ -22,11 +27,6 @@ namespace GridDemo.Controls
         {
             get => GetValue(RowDefinitionsSourceProperty);
             set => SetValue(RowDefinitionsSourceProperty, value);
-        }
-
-        public BindableGrid()
-        {
-            InvalidateDefinitions();
         }
 
         protected override void OnPropertyChanged<T>(AvaloniaPropertyChangedEventArgs<T> change)
